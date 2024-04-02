@@ -18,6 +18,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/',(req,res)=>{
+    res.send("Convert Case. Starting using a POST method and passing in body: convert, string")
+})
+
 app.post('/',(req,res) => {
 
     const {convert} = req.body
