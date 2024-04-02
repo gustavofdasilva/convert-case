@@ -8,11 +8,17 @@ const app = express()
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
-app.post('/',(req,res) => {
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept",
+    );
+    next();
+});
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, Accept-  Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
+app.post('/',(req,res) => {
 
     const {convert} = req.body
     const {string} = req.body
