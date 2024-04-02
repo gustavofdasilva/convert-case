@@ -3,10 +3,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 
+
+
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
 app.post('/',(req,res) => {
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, Accept-  Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+
     const {convert} = req.body
     const {string} = req.body
 
